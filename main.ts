@@ -15,7 +15,7 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
 })
 let jablko: Sprite = null
 let Hadík: Sprite = null
-scene.setBackgroundColor(15)
+scene.setBackgroundColor(14)
 Hadík = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
