@@ -109,19 +109,41 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSpr
     AddBodyPart()
     hungry = true
     info.changeScoreBy(1)
+    if (game_Speed > 50) {
+        game_Speed += 0 - 50
+    }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.body_part, function (sprite, otherSprite) {
     game.over(false)
 })
 let counter = 0
+let i = 0
 let head: Sprite = null
 let mySprite: Sprite = null
 let body: Sprite[] = []
 let dy = 0
 let dx = 0
 let hungry = false
+let game_Speed = 0
+game_Speed = 500
 hungry = true
 SetUpSnake()
+game.onUpdateInterval(50, function () {
+    if (i >= game_Speed) {
+        i = 0
+        counter = body.length - 1
+        while (counter > 0) {
+            body[counter].x = body[counter - 1].x
+            body[counter].y = body[counter - 1].y
+            counter += -1
+        }
+        body[0].setPosition(head.x, head.y)
+        head.x += dx
+        head.y += dy
+    } else {
+        i += 50
+    }
+})
 game.onUpdateInterval(2000, function () {
     if (hungry) {
         SpawnFood()
@@ -141,15 +163,4 @@ forever(function () {
     if (head.y > scene.screenHeight()) {
         head.y = 0
     }
-})
-game.onUpdateInterval(500, function () {
-    counter = body.length - 1
-    while (counter > 0) {
-        body[counter].x = body[counter - 1].x
-        body[counter].y = body[counter - 1].y
-        counter += -1
-    }
-    body[0].setPosition(head.x, head.y)
-    head.x += dx
-    head.y += dy
 })
