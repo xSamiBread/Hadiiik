@@ -3,7 +3,7 @@ namespace SpriteKind {
 }
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     dx = 0
-    dy = -8
+    dy = -6
 })
 function AddBodyPart () {
     body.push(sprites.create(img`
@@ -50,7 +50,7 @@ function SpawnFood () {
     mySprite.setFlag(SpriteFlag.StayInScreen, true)
 }
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
-    dx = -8
+    dx = -6
     dy = 0
 })
 function SetUpSnake () {
@@ -96,12 +96,12 @@ function SetUpSnake () {
     body[0].setPosition(head.x - dx, head.y - dy)
 }
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
-    dx = 8
+    dx = 6
     dy = 0
 })
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     dx = 0
-    dy = 8
+    dy = 6
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     music.baDing.play()
@@ -125,7 +125,7 @@ let dy = 0
 let dx = 0
 let hungry = false
 let game_Speed = 0
-game_Speed = 500
+game_Speed = 250
 hungry = true
 SetUpSnake()
 game.onUpdateInterval(50, function () {
@@ -144,7 +144,7 @@ game.onUpdateInterval(50, function () {
         i += 50
     }
 })
-game.onUpdateInterval(2000, function () {
+game.onUpdateInterval(1000, function () {
     if (hungry) {
         SpawnFood()
         hungry = false
